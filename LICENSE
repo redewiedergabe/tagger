@@ -3,9 +3,14 @@ BSD 2-Clause License
 Copyright (c) 2020, Annelen Brunner/Stefan Engelberg/Fotis Jannidis/Ngoc Duyen Tanja Tu/Lukas Weimer 
 All rights reserved.
 
-The "Redewiedergabe" taggers were created by the DFG-funded project "Redewiedergabe. Eine literatur- und sprachwissenschaftliche Korpusanalyse" in a cooperation between Leibniz-Institut für Deutsche Sprache, Mannheim (Abteilung Lexik) and Universität Würzburg (Lehrstuhl für Computerphilologie und Neuere Deutsche Literaturgeschichte).
-
-Project members: Annelen Brunner (IDS Mannheim), Stefan Engelberg (IDS Mannheim), Fotis Jannidis (Universität Würzburg), Ngoc Duyen Tanja Tu (IDS Mannheim), Lukas Weimer (Universität Würzburg).
+The "Redewiedergabe" taggers were created by the DFG-funded project 
+"Redewiedergabe. Eine literatur- und sprachwissenschaftliche Korpusanalyse" 
+in a cooperation between Leibniz-Institut für Deutsche Sprache, Mannheim 
+(Abteilung Lexik) and Universität Würzburg (Lehrstuhl für Computerphilologie 
+und Neuere Deutsche Literaturgeschichte).
+Project members: Annelen Brunner (IDS Mannheim), Stefan Engelberg 
+(IDS Mannheim), Fotis Jannidis (Universität Würzburg), Ngoc Duyen Tanja 
+Tu (IDS Mannheim), Lukas Weimer (Universität Würzburg).
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
