@@ -23,6 +23,10 @@ This GitHub repository contains scripts that handle data input and output and op
 
 The trained models must be downloaded separately before the recognizers are usable (see Recognizer models). 
 
+### Publications
+Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
+
+
 ### Environment
 The module is developed with Python 3.7.0., but should work for newer Python versions as well.
 
