@@ -109,7 +109,7 @@ To view the program help, execute ```python rwtagger.py -h```
 ### Predict mode (-m predict)
 In this mode, the script simply predicts the category for each token in the input files. The results are written into a column named after the predicted catgory (e.g. 'direct_pred').
 
- Information about some statistics such as running time is written to a folder called 'result_stats' in your output directory.
+Some statistics such as running time are written to a folder called 'result_stats' in your output directory.
   
 ### Test mode (-m test)
 
@@ -117,7 +117,7 @@ In this mode, the script does the same as in predict mode, but additionally calc
 
 Input format must a tsv file with a column for each STWR type you want to calculate scores for. For example, for direct, the file must contain a column named 'direct'. For each token, the value must be either 'direct' (positive case) or 'x' (negative case) (just like the output format of the recognizer). The script adds an additional column 'direct_pred' and calculates the scores between those columns. A detailed analysis is written to a folder called 'result_stats' in your output directory.
 
-You can use the script **util/create_testformat_from_rwcorpus.py** to convert any files that are in the column-based-text format of the corpus REDEWIEDERGABE into a format that allows you to use them as input file for the rwtagger_script in test mode. 
+You can use the script **util/create_testformat_from_rwcorpus.py** to convert any files that are in the column-based-text format of the [corpus Redewiedergabe](https://github.com/redewiedergabe/corpus) into a format that allows you to use them as input file for the rwtagger_script in test mode. 
 
 
 ### Some examples
