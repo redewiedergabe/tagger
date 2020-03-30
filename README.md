@@ -1,4 +1,4 @@
-# Recognizers for German speech, thought and writing representation (STWR) developed by project Redewiedergabe
+# Recognizers for German speech, thought and writing representation (STWR)
 
 **NOTE**: This is the first release of the STWR recognizers. Please use Github's issue tracker if you encounter any problems.
 
