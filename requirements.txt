@@ -1,0 +1,11 @@
+## Python machine learning requirements
+## Python 3.7.0
+## pip install -r requirements.txt
+
+flair==0.4.3
+pandas==0.24.2
+matplotlib==3.0.3
+nltk==3.4
+scikit-learn==0.22.1
+# if you want to use the script tsv_to_excel:
+openpyxl==3.0.3

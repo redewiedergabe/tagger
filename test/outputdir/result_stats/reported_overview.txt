@@ -1,0 +1,6 @@
+RW Tagger (predict): Model D:\GitHub\redewiedergabe\rwtagger\models\reported\final-model.pt
+Predict time:
+start: 2020-03-30 16:56:54nend:2020-03-30 16:56:58
+total: 0:00:04
+Total test scores (for detailed scores see reported_test_scores.tsv):
+f1: 0.55, precision: 0.49, recall: 0.62
