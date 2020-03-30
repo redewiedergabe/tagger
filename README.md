@@ -13,7 +13,7 @@ They can be used to automatically detect and annotate the following 4 types of s
 | indirect                  | Sie fragte, **wo das Essen sei.**                                           | She asked **where the food was.**                            |
 | reported                  | **Sie sprachen über das Mittagessen.**                                      | **They talked about lunch.**                                 |
 
-For more definitions for these STWR types please refer to the [Redewiedergabe annotation guidelines](http://redewiedergabe.de/richtlinien/richtlinien.html) (in German).
+For more detailed descriptions of these STWR types please refer to the [Redewiedergabe annotation guidelines](http://redewiedergabe.de/richtlinien/richtlinien.html) (in German).
 
 The recognizers are based on deepLearning and utilize the [flair NLP framework](https://github.com/flairNLP). 
 
