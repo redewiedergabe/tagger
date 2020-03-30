@@ -28,7 +28,7 @@ Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](htt
 
 
 ### Environment
-The module is developed with Python 3.7.0., but should work for newer Python versions as well.
+The software was developed with Python 3.7.0., but should work for newer Python versions as well.
 
 The following instructions explain how to set up the necessary Python modules in a virtual enviroment. Of course you can also execute the recognizers in your regular Python environment, if the necessary modules are installed there. 
 
