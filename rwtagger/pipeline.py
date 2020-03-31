@@ -30,9 +30,22 @@ class Pipeline:
             self.logger.info("Input directory ({}) does not contain any files of type '{}'. Tagging aborted.".format(inputdir, input_format))
             exit(0)
 
-        # for the first rwtype:
+        # check for each rwtype whether the model exists, before starting the pipeline
+        available_rwtypes = []
+        curr_path = os.path.dirname(os.path.abspath(__file__))
+        for rw_type in rwtype_list:
+            model_path = os.path.join(curr_path, "models", rw_type, "final-model.pt")
+            if not os.path.exists(model_path):
+                logging.warning(
+                    "Predicting {} aborted. Model not found at path '{}'. Please download a model and put it into "
+                    "the appropriate directory. The model file must be named final-model.pt.".format(rw_type,
+                                                                                                     model_path))
+            else:
+                available_rwtypes.append(rw_type)
+
+        # for the first available rwtype:
         # initialize the tagger for this STWR type
-        self.logger.info("Start predicting {}  (inputdir: {}, outputdir: {})".format(rwtype_list[0], inputdir, outputdir))
+        self.logger.info("Start predicting {}  (inputdir: {}, outputdir: {})".format(available_rwtypes[0], inputdir, outputdir))
         # if it already exists, remove the outputdir and create an new one
         if os.path.exists(outputdir):
             try:
@@ -42,15 +55,16 @@ class Pipeline:
                 exit(0)
         os.makedirs(outputdir)
         rwtagger = tagger.RWTagger(self.use_gpu, self.log_level)
-        rwtagger.predict(inputdir, outputdir, rwtype_list[0], input_format=input_format, chunk_len=chunk_len,
+        rwtagger.predict(inputdir, outputdir, available_rwtypes[0], input_format=input_format, chunk_len=chunk_len,
                          test_scores=test_scores,
                          output_confidence=confidence_vals)
-        self.logger.info("Finished predicting {}".format(rwtype_list[0]))
+        self.logger.info("Finished predicting {}".format(available_rwtypes[0]))
         # for all following rwtypes: input is always tsv and tempdir is used as inputdir
+        # however, if tempdir is empty (can happen if the tagging was aborted) use inputdir instead
         curr_path = os.path.dirname(os.path.abspath(__file__))
         tempdir = os.path.join(curr_path, "temp")
         self.logger.info("Creating tempdir: {}".format(tempdir))
-        if len(rwtype_list) > 1:
+        if len(available_rwtypes) > 1:
             # remove any old tempdirs and create an new one
             if os.path.exists(tempdir):
                 try:
@@ -59,7 +73,7 @@ class Pipeline:
                     self.logger.error("Could not remove old temp directory: {}.\nPlease remove manually. Tagging aborted.".format(tempdir))
                     exit(0)
             os.makedirs(tempdir)
-            for rwtype in rwtype_list[1:]:
+            for rwtype in available_rwtypes[1:]:
                 # move all the tsv files from outputdir to temp dir
                 tsv_files = [x for x in os.listdir(outputdir) if x[-4:] == ".tsv"]
                 for file in tsv_files:

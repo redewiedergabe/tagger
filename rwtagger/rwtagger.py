@@ -15,22 +15,33 @@ if __name__ == "__main__":
     'indirect' and 'reported'. It can also be used in test mode on annotated data and will then output 
     the evaluation scores. Runs on CPU by default, but can use GPU if flag -gpu is specified.
     
-    NOTE: The output directory will be recreated whenever the script is called, i.e. any files already stored in 
-        the given output directory will be overwritten!
+    NOTE: The output directory will be recreated whenever the script is called, this means any files already 
+    stored in the given output directory will be overwritten!
     
     Examples:
+    NOTE: It is safest to always place the option parameters after input_dir and output_dir
     
-    python rwtagger_script.py input_dir output_dir 
-    --> simplest call; expects a folder of plain text UTF-8 coded files, outputs tsv files with columns
-        for all 4 STWR types
-    
-    python rwtagger_script.py -gpu -t direct indirect -m test input_dir output_dir 
-    --> run the tagger on GPU; annotates the types direct and indirect; runs in test mode (input folder must contain
-        annotated data in tsv format; additional score file will be generated and saved in output)
-        
-    python rwtagger_script.py -gpu -f tsv input_dir output_dir 
-    --> run the tagger on GPU (in predict mode for all 4 STWR types); input format is not text but tsv
-        
+    python rwtagger.py input_dir output_dir
+
+    --> simplest call: expects an input folder of plain text UTF-8 coded files, tags all 4 STWR types and outputs 
+    tsv files with columns for each type; runs the tagger on CPU (Note: This call might take some time, as it loads 
+    and executes all 4 taggers one after the other)
+
+    python rwtagger.py input_dir output_dir -t direct indirect -conf
+
+    --> annotates only the types direct and indirect; outputs confidence values for each annotation; expects an 
+    input folder of plain text UTF-8 coded files
+
+    python rwtagger.py input_dir output_dir -gpu -f tsv
+
+    --> runs the tagger on GPU; input format is not plain text but tsv (similar to the output format of the tagger: 
+    one token per line and markers for sentence start; column names must be 'tok' and 'sentstart'); annotates all 
+    4 STWR types
+
+    python rwtagger.py input_dir output_dir -m test -t reported
+
+    --> runs the tagger and also calculates test scores for the STWR type reported; input files must be tsv format 
+    and contain a column called 'reported' containing the gold standard annotations.      
     """
     parser = argparse.ArgumentParser(description=help_text, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("input_dir", help="input directory")
