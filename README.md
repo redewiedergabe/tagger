@@ -125,6 +125,8 @@ You can use the script **util/create_testformat_from_rwcorpus.py** to convert an
 
 
 ### Some examples
+NOTE: It is safest to always place the option parameters *after* input_dir and output_dir.
+
 The directory **test** contains some folders you can use for testing. Note that the data in the output folder will be overwritten whenever you call the script again.
 
 ```python rwtagger.py input_dir output_dir```  
