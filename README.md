@@ -89,6 +89,9 @@ All models first encode the text with a language embedding (depending on the mod
 
 Historical German (19th to early 20th century) (fiction and non-fiction) was used for customizing/finetuning the Language Embeddings. 
 
+* The fine-tuned BERT Model is available at huggingface.co: https://huggingface.co/redewiedergabe/bert-base-historical-german-rw-cased
+* The custom-trained FLAIR model is in the process of being integrated at the FLAIR language embeddings page
+
 The recognizers work on a token basis and the scores are calculated based on tokens as well.
 
 | STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     |
