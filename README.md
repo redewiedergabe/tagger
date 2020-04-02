@@ -15,7 +15,7 @@ They can be used to automatically detect and annotate the following 4 types of s
 
 For more detailed descriptions of these STWR types please refer to the [Redewiedergabe annotation guidelines](http://redewiedergabe.de/richtlinien/richtlinien.html) (in German).
 
-The recognizers are based on deepLearning and utilize the [flair NLP framework](https://github.com/flairNLP). 
+The recognizers are based on deepLearning and utilize the [FLAIR NLP framework](https://github.com/flairNLP). 
 
 This GitHub repository contains scripts that handle data input and output and optionally calculate test scores. They allow you to run the recognizers from the command line.
 
@@ -90,7 +90,8 @@ All models first encode the text with a language embedding (depending on the mod
 Historical German (19th to early 20th century) (fiction and non-fiction) was used for customizing/finetuning the Language Embeddings. 
 
 * The fine-tuned BERT Model is available at huggingface.co: https://huggingface.co/redewiedergabe/bert-base-historical-german-rw-cased
-* The custom-trained FLAIR model is in the process of being integrated at the FLAIR language embeddings page
+* The custom-trained FLAIR model was integrated into the [FLAIR framework](https://github.com/flairNLP) and can be loaded with the following lines of code:
+```embeddings = FlairEmbeddings('de-historic-rw-forward')``` and ```embeddings = FlairEmbeddings('de-historic-rw-backward')```
 
 The recognizers work on a token basis and the scores are calculated based on tokens as well.
 
