@@ -17,17 +17,61 @@ For more detailed descriptions of these STWR types please refer to the [Redewied
 
 The recognizers are based on deepLearning and utilize the [FLAIR NLP framework](https://github.com/flairNLP). 
 
-This GitHub repository contains scripts that handle data input and output and optionally calculate test scores. They allow you to run the recognizers from the command line.
-
- For this, a Python environment with the necessary modules has to be set up. We provide a requirements file and give some instructions how to set up a Python virtual environment to facilitate this (see Environment). 
-
-The trained models must be downloaded separately before the recognizers are usable (see Recognizer models). 
-
 ### Publications
 Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
 
+*A new publication detailing the exact models provided here will appear soon (~ July 2020)*
 
-### Environment
+### Quick links
+* [Get our Models](#recognizer-models)
+* [Get our custom-trained Language Embeddings (BERT and FLAIR)](#custom-trained-language-embeddings)
+* [Set up the recognizer](#recognizer-setup) 
+    * **Note**: As an alternative to using the code provided here, you can also use run our Models [directly via the FLAIR framework](https://github.com/flairNLP/flair/issues/1531)! 
+
+## Recognizer models 
+For each STWR type, we provide the model that scored best in our tests (scores see below).
+
+Download the models and put them into the directory **rwtagger/models**. Models must always be named **final-model.pt** and be stored in a sub-folder matching their type (**direct**, **indirect**, **reported** or **freeIndirect**).
+
+The downloads are zip archives. Simply unpack them and move the folders into the **models** directory.
+
+* [Package with all 4 STWR models](http://www.redewiedergabe.de/models/models.zip) (~3 GB)
+
+Separate downloads for the different STWR types:
+* [Direct model](http://www.redewiedergabe.de/models/direct.zip) (~1.6 GB)
+* [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
+* [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB)
+* [Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)
+
+### Scores for the models
+All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
+
+The recognizers work on a token basis and the scores are calculated based on tokens as well.
+
+Each model recognizes one specific type of STWR in a binary classification ("direct" vs. "x", "indirect" vs. "x", etc.).
+
+| STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     |
+|---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|
+| direct        | 0.85 | 0.93      | 0.78   | Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained) | historical German (19th to early 20th century), fiction and non-fiction |
+| indirect      | 0.76 | 0.81      | 0.71   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
+| reported      | 0.60 | 0.67      | 0.54   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
+| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | modern German (mid 20th century to current), only fiction             |
+
+## Custom-trained language embeddings
+Historical German (19th to early 20th century) (fiction and non-fiction) was used for customizing/finetuning the Language Embeddings used for the recognizer modules.
+* The fine-tuned BERT Model is available at huggingface.co: https://huggingface.co/redewiedergabe/bert-base-historical-german-rw-cased
+* The custom-trained FLAIR model was integrated into the [FLAIR framework](https://github.com/flairNLP/flair/issues/1502) and can be loaded with the following lines of code:
+```embeddings = FlairEmbeddings('de-historic-rw-forward')``` and ```embeddings = FlairEmbeddings('de-historic-rw-backward')```
+
+# Recognizer setup
+
+This GitHub repository contains scripts that handle data input and output and optionally calculate test scores. They allow you to run the recognizers from the command line.
+
+For this, a Python environment with the necessary modules has to be set up. We provide a requirements file and give some instructions how to set up a [Python virtual environment](#environment) to facilitate this. 
+
+The [trained models](#recognizer-models) must be downloaded separately before the recognizers are usable. Put them into the directory **rwtagger/models**. Models must always be named **final-model.pt** and be stored in a sub-folder matching their type (**direct**, **indirect**, **reported** or **freeIndirect**).
+
+## Environment
 The software was developed with Python 3.7.0., but should work for newer Python versions as well.
 
 The following instructions explain how to set up the necessary Python modules in a virtual enviroment. Of course you can also execute the recognizers in your regular Python environment, if the necessary modules are installed there. 
@@ -69,40 +113,7 @@ We cannot cover all variations of the setup of a Python virtual  environment her
 
    ```deactivate```
 
-### Recognizer models 
-For each STWR type, we provide the model that scored best in our tests (scores see below).
-
-Download the models and put them into the directory **rwtagger/models**. Models must always be named **final-model.pt** and be stored in a sub-folder matching their type (**direct**, **indirect**, **reported** or **freeIndirect**).
-
-The downloads are zip archives. Simply unpack them and move the folders into the **models** directory.
-
-* [Package with all 4 STWR models](http://www.redewiedergabe.de/models/models.zip) (~3 GB)
-
-Separate downloads for the different STWR types:
-* [Direct model](http://www.redewiedergabe.de/models/direct.zip) (~1.6 GB)
-* [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
-* [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB)
-* [Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)
-
-### Scores for the models
-All models first encode the text with a language embedding (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
-
-Historical German (19th to early 20th century) (fiction and non-fiction) was used for customizing/finetuning the Language Embeddings. 
-
-* The fine-tuned BERT Model is available at huggingface.co: https://huggingface.co/redewiedergabe/bert-base-historical-german-rw-cased
-* The custom-trained FLAIR model was integrated into the [FLAIR framework](https://github.com/flairNLP) and can be loaded with the following lines of code:
-```embeddings = FlairEmbeddings('de-historic-rw-forward')``` and ```embeddings = FlairEmbeddings('de-historic-rw-backward')```
-
-The recognizers work on a token basis and the scores are calculated based on tokens as well.
-
-| STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     |
-|---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|
-| direct        | 0.85 | 0.93      | 0.78   | Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained) | historical German (19th to early 20th century), fiction and non-fiction |
-| indirect      | 0.76 | 0.81      | 0.71   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
-| reported      | 0.60 | 0.67      | 0.54   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
-| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | modern German (mid 20th century to current), only fiction             |
-
-# First steps
+## First steps
 After setting up the module and putting the models into the appropriate model folders, you can use the recognizers to annotate your texts. For this, execute the script **rwtagger.py** in your console.
 
 This script can be used to annotate textual data with the STWR types *direct*, *freeIndirect*, 
