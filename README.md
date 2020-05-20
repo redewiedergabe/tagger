@@ -20,13 +20,16 @@ The recognizers are based on deepLearning and utilize the [FLAIR NLP framework](
 ### Publications
 Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
 
-*A new publication detailing the exact models provided here will appear soon (~ July 2020)*
+*A publication detailing the models provided here was accepted for the 5th SwissText & 16th KONVENS Joint Conference 2020 and will appear here soon (~ June 2020)*
+
+*The training, validation and test corpora used to train and evaluate the taggers 
+for direct, indirect and reported STWR can be downloaded [here](https://github.com/redewiedergabe/corpus/blob/master/data/additional/data_konvens-paper-2020.zip). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions*
 
 ### Quick links
-* [Get our Models](#recognizer-models)
-* [Get our custom-trained Language Embeddings (BERT and FLAIR)](#custom-trained-language-embeddings)
+* [Get our models](#recognizer-models)
+* [Get our custom-trained language embeddings (BERT and FLAIR)](#custom-trained-language-embeddings)
 * [Set up the recognizer](#recognizer-setup) 
-    * **Note**: As an alternative to using the code provided here, you can also use run our Models [directly via the FLAIR framework](https://github.com/flairNLP/flair/issues/1531)! 
+    * **Note**: As an alternative to using the code provided here, you can also use run our models [directly via the FLAIR framework](https://github.com/flairNLP/flair/issues/1531)! 
 
 ## Recognizer models 
 For each STWR type, we provide the model that scored best in our tests (scores see below).
