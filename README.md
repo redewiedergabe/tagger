@@ -44,7 +44,7 @@ Separate downloads for the different STWR types:
 * [Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)
 
 The training, validation and test corpora used to train and evaluate the taggers 
-for direct, indirect and reported STWR can be downloaded [here](https://github.com/redewiedergabe/corpus/blob/master/data/additional/data_konvens-paper-2020.zip). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions.
+for direct, indirect and reported STWR are available [here](https://github.com/redewiedergabe/corpus/blob/master/resources/docs/data_konvens-paper-2020.md). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions.
 
 ### Scores for the models
 All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
