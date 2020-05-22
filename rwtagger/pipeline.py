@@ -1,3 +1,5 @@
+from typing import Dict
+
 import tagger
 import os
 import shutil
@@ -11,7 +13,7 @@ class Pipeline:
         self.use_gpu = use_gpu
         self.log_level = log_level
 
-    def predict(self, inputdir, outputdir, rwtype_list, input_format, chunk_len, test_scores, confidence_vals):
+    def predict(self, inputdir, outputdir, rwtype_list, input_format, chunk_len, test_scores, confidence_vals, config_path):
         """
         Calls the recognizers for each STWR type in turn; results are stored in output dir;
         temporary results are stored in directory "temp" which is created at the script location
@@ -31,10 +33,14 @@ class Pipeline:
             exit(0)
 
         # check for each rwtype whether the model exists, before starting the pipeline
+        # start by determining the paths via config file (if the config file is not found, default paths are used)
+        model_paths_dict = self.read_config(config_path)
+        self.logger.info("Current model paths: {}".format(model_paths_dict))
+
         available_rwtypes = []
         curr_path = os.path.dirname(os.path.abspath(__file__))
         for rw_type in rwtype_list:
-            model_path = os.path.join(curr_path, "models", rw_type, "final-model.pt")
+            model_path = os.path.join(curr_path, "models", model_paths_dict[rw_type], "final-model.pt")
             if not os.path.exists(model_path):
                 logging.warning(
                     "Predicting {} aborted. Model not found at path '{}'. Please download a model and put it into "
@@ -42,6 +48,9 @@ class Pipeline:
                                                                                                      model_path))
             else:
                 available_rwtypes.append(rw_type)
+
+        if len(available_rwtypes) == 0:
+            exit(0)
 
         # for the first available rwtype:
         # initialize the tagger for this STWR type
@@ -57,7 +66,8 @@ class Pipeline:
         rwtagger = tagger.RWTagger(self.use_gpu, self.log_level)
         rwtagger.predict(inputdir, outputdir, available_rwtypes[0], input_format=input_format, chunk_len=chunk_len,
                          test_scores=test_scores,
-                         output_confidence=confidence_vals)
+                         output_confidence=confidence_vals,
+                         special_model_path=model_paths_dict[rw_type])
         self.logger.info("Finished predicting {}".format(available_rwtypes[0]))
         # for all following rwtypes: input is always tsv and tempdir is used as inputdir
         # however, if tempdir is empty (can happen if the tagging was aborted) use inputdir instead
@@ -83,10 +93,28 @@ class Pipeline:
                 rwtagger = tagger.RWTagger(self.use_gpu, self.log_level)
                 # inputtype in always "tsv" now and input_dir is the temp dir
                 rwtagger.predict(tempdir, outputdir, rwtype, input_format="tsv", chunk_len=chunk_len, test_scores=test_scores,
-                                 output_confidence=confidence_vals)
+                                 output_confidence=confidence_vals, special_model_path=model_paths_dict[rw_type])
                 self.logger.info("Finished predicting {}".format(rwtype))
             # when all types have been predicted, remove the temp dir
             try:
                 shutil.rmtree(tempdir)
             except PermissionError:
                 self.logger.warning("Predictions finished, but could not remove temp directory: {}.".format(tempdir))
+
+    def read_config(self, configpath):
+        #initialize dict with default paths
+        rw_path_dict: Dict[str, str] = {"direct":"direct", "freeIndirect":"freeIndirect", "indirect":"indirect", "reported":"reported"}
+        # try reading config
+        if not os.path.exists(configpath):
+            self.logger.warning("Config file not found at {}. Using default model paths for STWR types.".format(configpath))
+        else:
+            with open(configpath, "r", encoding="utf8") as f:
+                for line in f.readlines():
+                    line = line.strip()
+                    if line != "" and (not line.startswith("#")):
+                        fields = line.split("@")
+                        if fields[0] in ["direct", "freeIndirect", "indirect", "reported"]:
+                            rw_path_dict[fields[0]] = fields[1].strip()
+                        else:
+                            self.logger.warning("Config file specifies unknown STWR type. Line will be ignored: {}".format(line))
+        return rw_path_dict

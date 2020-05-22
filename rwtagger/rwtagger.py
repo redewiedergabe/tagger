@@ -59,7 +59,7 @@ if __name__ == "__main__":
                         action="store_true")
     args = parser.parse_args()
 
-    pipeline: Pipeline = pipeline.Pipeline(args.use_gpu, logging.INFO)
+    pipeline:Pipeline = pipeline.Pipeline(args.use_gpu, logging.INFO)
     # set default value for input chunk_len to 100
     chunk_len = 100
     # check for valid input for input_format
@@ -75,11 +75,15 @@ if __name__ == "__main__":
     if args.mode == "test":
         pipeline.predict(args.input_dir, args.output_dir, args.rwtypes,
                          input_format="tsv", chunk_len=chunk_len, test_scores=True,
-                         confidence_vals=args.conf_vals)
+                         confidence_vals=args.conf_vals,
+                         config_path="config.txt"
+                         )
 
     elif args.mode == "predict":
         pipeline.predict(args.input_dir, args.output_dir, args.rwtypes,
                          input_format=args.input_format, chunk_len=chunk_len, test_scores=False,
-                         confidence_vals=args.conf_vals)
+                         confidence_vals=args.conf_vals,
+                         config_path="config.txt"
+                         )
     else:
         print("Unknown mode. Valid modes are 'predict' and 'test'.")

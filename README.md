@@ -29,36 +29,60 @@ Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](htt
     * **Note**: As an alternative to using the code provided here, you can also use run our models [directly via the FLAIR framework](https://github.com/flairNLP/flair/issues/1531)! 
 
 ## Recognizer models 
-For each STWR type, we provide the model that scored best in our tests (scores see below).
 
-Download the models and put them into the directory **rwtagger/models**. Models must always be named **final-model.pt** and be stored in a sub-folder matching their type (**direct**, **indirect**, **reported** or **freeIndirect**).
+[Current top models](#top-models-konvens-2020)
 
-The downloads are zip archives. Simply unpack them and move the folders into the **models** directory.
+Each STWR type is recognized by a separate model.
+The downloads are zip archives. Simply unpack them and move the folders into directory **rwtagger/models** directory.
 
-* [Package with all 4 STWR models](http://www.redewiedergabe.de/models/models.zip) (~3 GB)
+All models are named **final-model.pt** and the name of the subfolder is used to locate the model you want to use. 
+The default models are stored in directories named after their STWR type
+(**direct**, **indirect**, **reported** or **freeIndirect**).
 
-Separate downloads for the different STWR types:
-* [Direct model](http://www.redewiedergabe.de/models/direct.zip) (~1.6 GB)
-* [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
-* [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB)
-* [Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)
+The subfolders for alternative models have different names. If you want to
+use them, you have to edit the file **rwtagger/config.txt**
 
-The training, validation and test corpora used to train and evaluate the taggers 
-for direct, indirect and reported STWR are available [here](https://github.com/redewiedergabe/corpus/blob/master/resources/docs/data_konvens-paper-2020.md). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions.
+**Example:** For using the [direct model that is based on BERT embeddings](#alternative-models-konvens-2020), first download and unpack this alternative model. It is stored in a folder namend **direct_BERT**. Move the folder into the directory **rwtagger/models**. Then add the following line to the file **rwtagger/config.txt**:
 
-### Scores for the models
+ ```direct@direct_BERT```  
+ 
+When you run the rwtagger script again, the BERT model will be used to recognize direct STWR instead of the default.
+
+### KONVENS 2020 models
+These are the models discussed in the KONVENS 2020 paper. 
+
 All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
 
 The recognizers work on a token basis and the scores are calculated based on tokens as well.
 
 Each model recognizes one specific type of STWR in a binary classification ("direct" vs. "x", "indirect" vs. "x", etc.).
 
-| STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     |
-|---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|
-| direct        | 0.85 | 0.93      | 0.78   | Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained) | historical German (19th to early 20th century), fiction and non-fiction |
-| indirect      | 0.76 | 0.81      | 0.71   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
-| reported      | 0.60 | 0.67      | 0.54   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction |
-| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | modern German (mid 20th century to current), only fiction             |
+The training, validation and test corpora used to train and evaluate the taggers 
+for direct, indirect and reported STWR are available [here](https://github.com/redewiedergabe/corpus/blob/master/resources/docs/data_konvens-paper-2020.md). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions.
+
+#### Top models (KONVENS 2020)
+
+These are the best performing models as presented in the KONVENS 2020 paper. They are considered the default models for the recognizers.
+
+[Package with all 4 STWR models at once](http://www.redewiedergabe.de/models/models.zip) (~3 GB)
+
+| STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     | Download |
+|---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| direct        | 0.85 | 0.93      | 0.78   | Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained) | historical German (19th to early 20th century), fiction and non-fiction | [Direct model](http://www.redewiedergabe.de/models/direct.zip) (~1.6 GB) |
+| indirect      | 0.76 | 0.81      | 0.71   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction | [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
+| reported      | 0.60 | 0.67      | 0.54   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction | [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB) |
+| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | modern German (mid 20th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)|
+
+#### Alternative models (KONVENS 2020)
+As an alternative, we also provide the most successful models using an alternative language embedding. These were used in the comparisons in the KONVENS 2020 paper.
+
+| STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     | Download |
+|---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| direct        | 0.80 | 0.87      | 0.74   | BERT (custom finetuned)  | historical German (19th to early 20th century), fiction and non-fiction | [Direct model](http://www.redewiedergabe.de/models/direct_BERT.zip) (~ 460 MB) |
+| indirect      | 0.74 | 0.77      | 0.71   |  Skipgram with 300 dimensions  & FLAIR embeddings (both custom trained)                              | historical German (19th to early 20th century), fiction and non-fiction | [Indirect model](http://www.redewiedergabe.de/models/indirect_FLAIR.zip) (~788 MB)
+| reported      | 0.58 | 0.69      | 0.50   |  Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained)                              | historical German (19th to early 20th century), fiction and non-fiction | [Reported model](http://www.redewiedergabe.de/models/reported_FLAIR.zip) (~1.6 GB) |
+| free indirect | 0.49 | 0.76      | 0.36   |  Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained)                          | modern German (mid 20th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect_FLAIR.zip) (~1,3 GB)|
+ 
 
 ## Custom-trained language embeddings
 Historical German (19th to early 20th century) (fiction and non-fiction) was used for customizing/finetuning the Language Embeddings used for the recognizer modules.

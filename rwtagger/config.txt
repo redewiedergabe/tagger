@@ -1,0 +1,14 @@
+# This file can be used to configure alternative model subdirectories for the STWR types.
+# The model in the respective subdirectory must still be named 'final_model.pt'
+# For STWR types missing in this file, the default directory is assumed
+# NOTE: If an STWR type is specified twice, only the last specification is used
+#
+# Format of the file:
+# stwr_type@name_of_subdirectory_in_models
+#
+# uncomment any of the following lines to use the alternative models
+# (after downloading them and storing them in the "models" directory)
+direct@direct_BERT
+indirect@indirect_FLAIR
+reported@reported_FLAIR
+freeIndirect@freeIndirect_FLAIR

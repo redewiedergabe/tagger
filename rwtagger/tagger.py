@@ -313,7 +313,8 @@ class RWTagger:
 
     def predict(self, input_dir, output_dir, rw_type, input_format, chunk_len=100,
                 test_scores = False,
-                output_confidence=False):
+                output_confidence=False,
+                special_model_path=None):
         """
         tags each file in the input directory (txt or tsv files) and writes the results
         to output_dir. Also adds a folder "result_stats" with runtime information to the
@@ -337,7 +338,10 @@ class RWTagger:
         # load the model
         # determine the current script path
         curr_path = os.path.dirname(os.path.abspath(__file__))
-        model_path = os.path.join(curr_path, "models", rw_type, "final-model.pt")
+        if special_model_path is None:
+            model_path = os.path.join(curr_path, "models", rw_type, "final-model.pt")
+        else:
+            model_path = os.path.join(curr_path, "models", special_model_path, "final-model.pt")
         if not os.path.exists(model_path):
             logging.warning("Predicting {} aborted. Model not found at path '{}'. Please download a model and put it into "
                           "the appropriate directory. The model file must be named final-model.pt.".format(rw_type, model_path))
