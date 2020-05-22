@@ -71,7 +71,7 @@ These are the best performing models as presented in the KONVENS 2020 paper. The
 | direct        | 0.85 | 0.93      | 0.78   | Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained) | historical German (19th to early 20th century), fiction and non-fiction | [Direct model](http://www.redewiedergabe.de/models/direct.zip) (~1.6 GB) |
 | indirect      | 0.76 | 0.81      | 0.71   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction | [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
 | reported      | 0.60 | 0.67      | 0.54   | BERT (custom finetuned)                              | historical German (19th to early 20th century), fiction and non-fiction | [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB) |
-| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | modern German (mid 20th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)|
+| free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | historical and modern German (late 19th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)|
 
 #### Alternative models (KONVENS 2020)
 As an alternative, we also provide the most successful models using an alternative language embedding. These were used in the comparisons in the KONVENS 2020 paper.
@@ -81,7 +81,7 @@ As an alternative, we also provide the most successful models using an alternati
 | direct        | 0.80 | 0.87      | 0.74   | BERT (custom finetuned)  | historical German (19th to early 20th century), fiction and non-fiction | [Direct model](http://www.redewiedergabe.de/models/direct_BERT.zip) (~ 460 MB) |
 | indirect      | 0.74 | 0.77      | 0.71   |  Skipgram with 300 dimensions  & FLAIR embeddings (both custom trained)                              | historical German (19th to early 20th century), fiction and non-fiction | [Indirect model](http://www.redewiedergabe.de/models/indirect_FLAIR.zip) (~788 MB)
 | reported      | 0.58 | 0.69      | 0.50   |  Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained)                              | historical German (19th to early 20th century), fiction and non-fiction | [Reported model](http://www.redewiedergabe.de/models/reported_FLAIR.zip) (~1.6 GB) |
-| free indirect | 0.49 | 0.76      | 0.36   |  Skipgram with 500 dimensions  & FLAIR embeddings (both custom trained)                          | modern German (mid 20th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect_FLAIR.zip) (~1,3 GB)|
+| free indirect | 0.51 | 0.87      | 0.36   |  Skipgram with 300 dimensions  & FLAIR embeddings (both custom trained)                          | historical and modern German (late 19th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect_FLAIR.zip) (~1,3 GB)|
  
 
 ## Custom-trained language embeddings
