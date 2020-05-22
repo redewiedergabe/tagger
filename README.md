@@ -22,9 +22,6 @@ Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](htt
 
 *A publication detailing the models provided here was accepted for the 5th SwissText & 16th KONVENS Joint Conference 2020 and will appear here soon (~ June 2020)*
 
-*The training, validation and test corpora used to train and evaluate the taggers 
-for direct, indirect and reported STWR can be downloaded [here](https://github.com/redewiedergabe/corpus/blob/master/data/additional/data_konvens-paper-2020.zip). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions*
-
 ### Quick links
 * [Get our models](#recognizer-models)
 * [Get our custom-trained language embeddings (BERT and FLAIR)](#custom-trained-language-embeddings)
@@ -45,6 +42,9 @@ Separate downloads for the different STWR types:
 * [Indirect model](http://www.redewiedergabe.de/models/indirect.zip) (~460 MB)
 * [Reported model](http://www.redewiedergabe.de/models/reported.zip) (~460 MB)
 * [Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)
+
+The training, validation and test corpora used to train and evaluate the taggers 
+for direct, indirect and reported STWR can be downloaded [here](https://github.com/redewiedergabe/corpus/blob/master/data/additional/data_konvens-paper-2020.zip). Unfortunately, we cannot provide the exact data for the free indirect model due to copyright restrictions.
 
 ### Scores for the models
 All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
