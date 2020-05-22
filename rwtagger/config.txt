@@ -8,7 +8,7 @@
 #
 # uncomment any of the following lines to use the alternative models
 # (after downloading them and storing them in the "models" directory)
-direct@direct_BERT
-indirect@indirect_FLAIR
-reported@reported_FLAIR
-freeIndirect@freeIndirect_FLAIR
+#direct@direct_BERT
+#indirect@indirect_FLAIR
+#reported@reported_FLAIR
+#freeIndirect@freeIndirect_FLAIR
