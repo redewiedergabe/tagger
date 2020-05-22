@@ -88,7 +88,7 @@ We cannot cover all variations of the setup of a Python virtual  environment her
   
   ```pip install virtualenv```
 * Download this Github project
-* Change into the directory **redewiedergabe** and execute the following code 
+* Change into the directory **tagger** and execute the following code 
    * **NOTE:** The code below installs the **CPU version of pytorch**, which works for all computers. If you want to use a GPU instead, uncomment the alternative line in the code. However, for the GPU to work with pytorch your also have to make sure you have CUDA installed and configured correctly. For this, please refer to other guides, e.g. [this one](https://medium.com/datadriveninvestor/installing-pytorch-and-tensorflow-with-cuda-enabled-gpu-f747e6924779).
    ```
    virtualenv venv 
