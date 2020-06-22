@@ -18,7 +18,13 @@ For more detailed descriptions of these STWR types please refer to the [Redewied
 The recognizers are based on deepLearning and utilize the [FLAIR NLP framework](https://github.com/flairNLP). 
 
 ### Publications
-Brunner/Tu/Weimer/Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
+Main Publication (please cite when using the recognizers):
+
+Annelen Brunner, Ngoc Duyen Tanja Tu, Lukas Weimer, Fotis Jannidis: [To BERT or not to BERT – Comparing Contextual Embeddings in a Deep Learning Architecture for the Automatic Recognition of four Types of Speech, Thought and Writing Representation](http://ceur-ws.org/Vol-2624/paper5.pdf), Proceedings of the 5th Swiss Text Analytics Conference (SwissText) & 16th Conference on Natural Language Processing (KONVENS), Zurich, Switzerland, June 23-25, 2020.
+
+Other Publications:
+
+Annelen Brunner, Ngoc Duyen Tanja Tu, Lukas Weimer, Fotis Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
 
 *A publication detailing the models provided here was accepted for the 5th SwissText & 16th KONVENS Joint Conference 2020 and will appear here soon (~ June 2020)*
 
@@ -49,7 +55,7 @@ use them, you have to edit the file **rwtagger/config.txt**
 When you run the rwtagger script again, the BERT model will be used to recognize direct STWR instead of the default.
 
 ### KONVENS 2020 models
-These are the models discussed in the KONVENS 2020 paper. 
+These are the models discussed in the [KONVENS 2020 paper](http://ceur-ws.org/Vol-2624/paper5.pdf). 
 
 All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
 
@@ -62,7 +68,7 @@ for direct, indirect and reported STWR are available [here](https://github.com/r
 
 #### Top models (KONVENS 2020)
 
-These are the best performing models as presented in the KONVENS 2020 paper. They are considered the default models for the recognizers.
+These are the best performing models as presented in the [KONVENS 2020 paper](http://ceur-ws.org/Vol-2624/paper5.pdf). They are considered the default models for the recognizers.
 
 [Package with all 4 STWR models at once](http://www.redewiedergabe.de/models/models.zip) (~3 GB)
 
@@ -74,7 +80,7 @@ These are the best performing models as presented in the KONVENS 2020 paper. The
 | free indirect | 0.59 | 0.78      | 0.47   | BERT (custom finetuned)                              | historical and modern German (late 19th century to current), only fiction             |[Free indirect model](http://www.redewiedergabe.de/models/freeIndirect.zip) (~460 MB)|
 
 #### Alternative models (KONVENS 2020)
-As an alternative, we also provide the most successful models using an alternative language embedding. These were used in the comparisons in the KONVENS 2020 paper.
+As an alternative, we also provide the most successful models using an alternative language embedding. These were used in the comparisons in the [KONVENS 2020 paper](http://ceur-ws.org/Vol-2624/paper5.pdf).
 
 | STWR type     | F1   | Precision | Recall | Language embedding                                   | Training and Test material                                                     | Download |
 |---------------|------|-----------|--------|------------------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
