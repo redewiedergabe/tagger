@@ -26,8 +26,6 @@ Other Publications:
 
 Annelen Brunner, Ngoc Duyen Tanja Tu, Lukas Weimer, Fotis Jannidis: [Deep learning for Free Indirect Representation](https://corpora.linguistik.uni-erlangen.de/data/konvens/proceedings/papers/KONVENS2019_paper_27.pdf), KONVENS Erlangen 2019, pp. 241-245.
 
-*A publication detailing the models provided here was accepted for the 5th SwissText & 16th KONVENS Joint Conference 2020 and will appear here soon (~ June 2020)*
-
 ### Quick links
 * [Get our models](#recognizer-models)
 * [Get our custom-trained language embeddings (BERT and FLAIR)](#custom-trained-language-embeddings)
