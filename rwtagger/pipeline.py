@@ -67,7 +67,7 @@ class Pipeline:
         rwtagger.predict(inputdir, outputdir, available_rwtypes[0], input_format=input_format, chunk_len=chunk_len,
                          test_scores=test_scores,
                          output_confidence=confidence_vals,
-                         special_model_path=model_paths_dict[rw_type])
+                         special_model_path=model_paths_dict[available_rwtypes[0]])
         self.logger.info("Finished predicting {}".format(available_rwtypes[0]))
         # for all following rwtypes: input is always tsv and tempdir is used as inputdir
         # however, if tempdir is empty (can happen if the tagging was aborted) use inputdir instead
@@ -93,7 +93,7 @@ class Pipeline:
                 rwtagger = tagger.RWTagger(self.use_gpu, self.log_level)
                 # inputtype in always "tsv" now and input_dir is the temp dir
                 rwtagger.predict(tempdir, outputdir, rwtype, input_format="tsv", chunk_len=chunk_len, test_scores=test_scores,
-                                 output_confidence=confidence_vals, special_model_path=model_paths_dict[rw_type])
+                                 output_confidence=confidence_vals, special_model_path=model_paths_dict[rwtype])
                 self.logger.info("Finished predicting {}".format(rwtype))
             # when all types have been predicted, remove the temp dir
             try:
@@ -113,6 +113,7 @@ class Pipeline:
                     line = line.strip()
                     if line != "" and (not line.startswith("#")):
                         fields = line.split("@")
+                        print(fields)
                         if fields[0] in ["direct", "freeIndirect", "indirect", "reported"]:
                             rw_path_dict[fields[0]] = fields[1].strip()
                         else:

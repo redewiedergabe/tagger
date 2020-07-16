@@ -2,6 +2,7 @@ import argparse
 import logging
 import pipeline
 from pipeline import Pipeline
+import os
 
 
 # call the starting method
@@ -72,18 +73,21 @@ if __name__ == "__main__":
             print("Unknown STWR type '{}'. Valid STWR types are 'direct', 'freeIndirect', 'indirect' and 'reported'.".format(rw_type))
             exit(0)
 
+    curr_path = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(curr_path, "config.txt")
+
     if args.mode == "test":
         pipeline.predict(args.input_dir, args.output_dir, args.rwtypes,
                          input_format="tsv", chunk_len=chunk_len, test_scores=True,
                          confidence_vals=args.conf_vals,
-                         config_path="config.txt"
+                         config_path=config_path
                          )
 
     elif args.mode == "predict":
         pipeline.predict(args.input_dir, args.output_dir, args.rwtypes,
                          input_format=args.input_format, chunk_len=chunk_len, test_scores=False,
                          confidence_vals=args.conf_vals,
-                         config_path="config.txt"
+                         config_path=config_path
                          )
     else:
         print("Unknown mode. Valid modes are 'predict' and 'test'.")
