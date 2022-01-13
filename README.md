@@ -67,7 +67,7 @@ These are the models discussed in the [KONVENS 2020 paper](http://ceur-ws.org/Vo
 
 All models first encode the text with a [customized Language Embedding](#custom-trained-language-embeddings) (depending on the model: see table) and were then trained for their STWR task using a deep learning architecture with 2 BiLSTM layers and one CRF layer. 
 
-The recognizers work on a token basis and the scores are calculated based on tokens as well.
+The recognizers work on token basis and the scores are calculated based on tokens as well.
 
 Each model recognizes one specific type of STWR in a binary classification ("direct" vs. "x", "indirect" vs. "x", etc.).
 
@@ -113,19 +113,19 @@ For this, a Python environment with the necessary modules has to be set up. We p
 The [trained models](#recognizer-models) must be downloaded separately before the recognizers are usable. Put them into the directory **rwtagger/models**. Models must always be named **final-model.pt** and be stored in a sub-folder matching their type (**direct**, **indirect**, **reported** or **freeIndirect**).
 
 ## Environment
-The software was developed with Python 3.7.0., but should work for newer Python versions as well.
+The software was developed with Python 3.7.0., but also runs with Python 3.6.8 and should work for newer Python versions as well.
 
 The following instructions explain how to set up the necessary Python modules in a virtual enviroment. Of course you can also execute the recognizers in your regular Python environment, if the necessary modules are installed there. 
 
-We cannot cover all variations of the setup of a Python virtual  environment here, so the instructions explain only how to do it with Anaconda Python under Windows. If this does not work for you, please consult other instructions regarding Python virtual environments, e.g. [this tutorial](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/).
+We cannot cover all variations of the setup of a Python virtual  environment here, so the instructions explain only how to do it with Anaconda Python under Windows. If this does not work for you, please consult other instructions regarding Python virtual environments, e.g. [this one](https://docs.python.org/3/library/venv.html).
 
 **Setup with Anaconda Python under Windows**
-* Make sure the you have at least Python 3.7.0 installed (newer versions should work as well) 
+* Make sure the you have at least Python 3.6.8 installed (3.7.0 is recommended; newer versions should work as well) 
 * If you have no experience with Python, we recommend installing [Anaconda Python](https://www.anaconda.com/); then proceed in the 'Anaconda Powershell Prompt' console to avoid problems with path variables (NOTE: Anaconda has two different 'Prompt' consoles. These instructions assume you use 'Anaconda **Powershell** Prompt')
 * If Python **virtualenv** is not already installed, execute the following code in the console:
   
   ```pip install virtualenv```
-* Download this Github project
+* Download and unpack this Github project
 * Change into the directory **tagger** and execute the following code 
    * **NOTE:** The code below installs the **CPU version of pytorch**, which works for all computers. If you want to use a GPU instead, refer to the [pytorch download page](https://pytorch.org/get-started/locally) to get the correct syntax. However, for the GPU to work with pytorch your also have to make sure you have CUDA installed and configured correctly. For this, please refer to other guides, e.g. [this one](https://medium.com/datadriveninvestor/installing-pytorch-and-tensorflow-with-cuda-enabled-gpu-f747e6924779).
    ```
@@ -137,8 +137,9 @@ We cannot cover all variations of the setup of a Python virtual  environment her
    # Install pytorch. The code was tested with version 1.10.1. 
    # If you don't want to use a GPU and are willing to risk getting a newer version, simply type:
    pip3 install torch torchvision torchaudio
-   # Alternatively, if you want more control over the version or want to use a GPU, skip the line above and
-   # refer to https://pytorch.org/get-started/locally to get the correct syntax for installation. 
+   # Alternatively, if you want more control over the version or want to use a GPU, skip 
+   # the line above and refer to https://pytorch.org/get-started/locally to get the correct 
+   # syntax for installation. 
    
    # Install all other required modules:
    pip install -r ..\requirements.txt
@@ -153,7 +154,7 @@ We cannot cover all variations of the setup of a Python virtual  environment her
   nltk.download('punkt')
   exit()
 ```
-* You can now execute the recognizers in this console window (after you have downloaded the Recognizer models). Make sure that **venv** is the active environment (should be visible in your prompt line). If you want to switch back to your regular Python environment, type:
+* You can now execute the recognizers in this console window (after you have downloaded the Recognizer models). Make sure that **venv** is the active environment (should be visible in your prompt line). If you want to switch back to your regular Python environment, change back to venv/Scripts and type:
 
    ```deactivate```
 
