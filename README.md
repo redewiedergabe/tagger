@@ -1,6 +1,16 @@
 # Recognizers for German speech, thought and writing representation (STWR)
 
-**NOTE**: This is the first release of the STWR recognizers. Please use Github's issue tracker if you encounter any problems.
+---
+**NOTE**: 
+The code was adjusted to account for new versions of the **pytorch** and **flair** packages. Please note the new [requirements](requirements.txt) - especially: 
+* pytorch version 1.10.1 
+* flair version 0.10
+
+The code will no longer work with the old requirements. The old version of the tagger code has been archived as **release v1.0.0**. 
+
+Please use Github's issue tracker if you encounter any problems.
+
+---
 
 These recognizers were developed by the DFG-funded project "Redewiedergabe - eine literatur- und sprachwissenschaftliche Korpusanalyse" (Leibniz Institute for the German Language / University of Würzburg) ([www.redewiedergabe.de](http://redewiedergabe.de)) and (mostly) trained on data from [Corpus Redewiedergabe](https://github.com/redewiedergabe/corpus). 
 
@@ -117,20 +127,23 @@ We cannot cover all variations of the setup of a Python virtual  environment her
   ```pip install virtualenv```
 * Download this Github project
 * Change into the directory **tagger** and execute the following code 
-   * **NOTE:** The code below installs the **CPU version of pytorch**, which works for all computers. If you want to use a GPU instead, uncomment the alternative line in the code. However, for the GPU to work with pytorch your also have to make sure you have CUDA installed and configured correctly. For this, please refer to other guides, e.g. [this one](https://medium.com/datadriveninvestor/installing-pytorch-and-tensorflow-with-cuda-enabled-gpu-f747e6924779).
+   * **NOTE:** The code below installs the **CPU version of pytorch**, which works for all computers. If you want to use a GPU instead, refer to the [pytorch download page](https://pytorch.org/get-started/locally) to get the correct syntax. However, for the GPU to work with pytorch your also have to make sure you have CUDA installed and configured correctly. For this, please refer to other guides, e.g. [this one](https://medium.com/datadriveninvestor/installing-pytorch-and-tensorflow-with-cuda-enabled-gpu-f747e6924779).
    ```
    virtualenv venv 
    cd venv
    .\Scripts\activate
-   # --> you should now see '(base) (venv)' at the beginning of your prompt line
-   # install pytorch:
-   # if your computer does not have a GPU:
-   pip3 install torch==1.3.1+cpu torchvision==0.4.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
-   # alternatively, if your computer has a GPU you want to use, remove the line above and uncomment the following:
-   # pip3 install torch===1.3.1 torchvision===0.4.2 -f https://download.pytorch.org/whl/torch_stable.html
-   # install all other required modules:
+   # --> You should now see '(base) (venv)' at the beginning of your prompt line.
+   
+   # Install pytorch. The code was tested with version 1.10.1. 
+   # If you don't want to use a GPU and are willing to risk getting a newer version, simply type:
+   pip3 install torch torchvision torchaudio
+   # Alternatively, if you want more control over the version or want to use a GPU, skip the line above and
+   # refer to https://pytorch.org/get-started/locally to get the correct syntax for installation. 
+   
+   # Install all other required modules:
    pip install -r ..\requirements.txt
-   # change to the rwtagger directory
+   
+   # Change back to the rwtagger directory
    cd ..\rwtagger
   ```
 * To tokenize input texts, you need additional libraries for the NLTK module. We recommend installing them in the interactive mode:
