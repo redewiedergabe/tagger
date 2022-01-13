@@ -376,14 +376,17 @@ class RWTagger:
                     # create sentlist (based on max chunk length)
                     sent_list = self.create_sentlist_from_file_batchmax(data,
                                                                         maxlen=chunk_len,
+
                                                                         compare_column="NaN")
                     # predict
                     res_dict = {"tok": [], rw_type + "_pred": [], rw_type + "_conf": []}
                     for sent in sent_list:
                         model.predict(sent)
-                        pred_list = [x["type"] for x in sent.to_dict("cat")["entities"]]
-                        res_dict["tok"].extend([x["text"] for x in sent.to_dict("cat")["entities"]])
-                        res_dict[rw_type + "_conf"].extend([x["confidence"] for x in sent.to_dict("cat")["entities"]])
+                        pred_conf_list = [x["labels"] for x in sent.to_dict(tag_type="cat")["entities"]]
+                        pred_list = [x[0].to_dict()["value"] for x in pred_conf_list]
+                        conf_list = [x[0].to_dict()["confidence"] for x in pred_conf_list]
+                        res_dict["tok"].extend([x["text"] for x in sent.to_dict(tag_type="cat")["entities"]])
+                        res_dict[rw_type + "_conf"].extend(conf_list)
                         res_dict[rw_type + "_pred"].extend(pred_list)
                     pred_df = pd.DataFrame(res_dict)
                     # create output

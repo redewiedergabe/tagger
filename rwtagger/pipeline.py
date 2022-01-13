@@ -29,7 +29,7 @@ class Pipeline:
         # check whether there are files of the correct input type in the input dir before doing anything
         input_files = [x for x in os.listdir(inputdir) if x[-4:] == "." + input_format]
         if len(input_files) == 0:
-            self.logger.info("Input directory ({}) does not contain any files of type '{}'. Tagging aborted.".format(inputdir, input_format))
+            self.logger.warning("Input directory ({}) does not contain any files of type '{}'. Tagging aborted.".format(inputdir, input_format))
             exit(0)
 
         # check for each rwtype whether the model exists, before starting the pipeline
