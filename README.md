@@ -47,7 +47,7 @@ Annelen Brunner, Ngoc Duyen Tanja Tu, Lukas Weimer, Fotis Jannidis: [Deep learni
 [Current top models](#top-models-konvens-2020)
 
 Each STWR type is recognized by a separate model.
-The downloads are zip archives. Simply unpack them and move the folders into directory **rwtagger/models** directory.
+The downloads are zip archives. Simply unpack them and move the folders into directory **rwtagger/models**.
 
 All models are named **final-model.pt** and the name of the subfolder is used to locate the model you want to use. 
 The default models are stored in directories named after their STWR type
