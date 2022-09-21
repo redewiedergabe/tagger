@@ -1,5 +1,9 @@
 # Recognizers for German speech, thought and writing representation (STWR)
 
+<p>
+<a href="https://console.tiyaro.ai/explore/redewiedergabe-bert-base-historical-german-rw-cased"> <img src="https://tiyaro-public-docs.s3.us-west-2.amazonaws.com/assets/try_on_tiyaro_badge.svg"></a>
+</p>
+
 ---
 **NOTE**: 
 The code was adjusted to account for new versions of the **pytorch** and **flair** packages. Please note the new [requirements](requirements.txt) - especially: 
