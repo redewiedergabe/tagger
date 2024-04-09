@@ -1,7 +1,8 @@
 # Recognizers for German speech, thought and writing representation (STWR)
+
 ---
 **NOTE**:
-Unfortunately we encounter issues at the moment, because the models depend on deprecated versions of the pytorch library. We are working on fixing this. In the meantime, [Christof Schöch](https://github.com/christofs) helpfully provided [instructions](https://github.com/redewiedergabe/tagger/issues/4) how to get the tagger to run in a virtual environment in spite of the issues.
+The models depend on deprecated versions of the pytorch library and can only be used with Python 3.7.5 and Flair 0.1.0. We are working on fixing this. In the meantime, [Christof Schöch](https://github.com/christofs) helpfully provided [instructions](https://github.com/redewiedergabe/tagger/issues/4#issuecomment-1914683652) how to get the tagger to run in a virtual environment.
 
 ---
 **NOTE**: 
