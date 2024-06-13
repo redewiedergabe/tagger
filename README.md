@@ -1,5 +1,9 @@
 # Recognizers for German speech, thought and writing representation (STWR)
 
+<p>
+<a href="https://console.tiyaro.ai/explore/redewiedergabe-bert-base-historical-german-rw-cased"> <img src="https://tiyaro-public-docs.s3.us-west-2.amazonaws.com/assets/try_on_tiyaro_badge.svg"></a>
+</p>
+
 ---
 **NOTE**:
 The models depend on deprecated versions of the pytorch library and can only be used with Python 3.7.5 and Flair 0.1.0. We are working on fixing this. In the meantime, [Christof Schöch](https://github.com/christofs) helpfully provided [instructions](https://github.com/redewiedergabe/tagger/issues/4#issuecomment-1914683652) how to get the tagger to run in a virtual environment.
